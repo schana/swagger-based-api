@@ -1,0 +1,59 @@
+swagger: '2.0'
+
+info:
+  version: '1'
+  title: alpha api
+  description: A sample API
+
+definitions:
+  Alphas:
+    type: object
+    required:
+      - alphas
+    properties:
+      alphas:
+        type: array
+        items:
+          $ref: '#/definitions/Alpha'
+  Alpha:
+    type: object
+    properties:
+      x_and_y:
+        type: integer
+      z:
+        type: string
+
+parameters:
+  x:
+    name: x
+    in: query
+    description: x
+    required: true
+    type: integer
+  y:
+    name: y
+    in: query
+    description: y
+    required: false
+    type: integer
+    default: 0
+  z:
+    name: zed
+    in: query
+    description: z-e-d
+    required: true
+    type: string
+
+paths:
+  /alphas:
+    get:
+      description: Get the alphas
+      parameters:
+        - $ref: '#/parameters/x'
+        - $ref: '#/parameters/y'
+        - $ref: '#/parameters/z'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Alphas'

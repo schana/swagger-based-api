@@ -1,0 +1,59 @@
+swagger: '2.0'
+
+info:
+  version: '1'
+  title: beta api
+  description: A sample API
+
+definitions:
+  Betas:
+    type: object
+    required:
+      - betas
+    properties:
+      betas:
+        type: array
+        items:
+          $ref: '#/definitions/Beta'
+  Beta:
+    type: object
+    properties:
+      x_concat_y:
+        type: string
+      z:
+        type: integer
+
+parameters:
+  x:
+    name: x
+    in: query
+    description: x
+    required: true
+    type: string
+  y:
+    name: y
+    in: query
+    description: y
+    required: false
+    type: string
+    default: ''
+  z:
+    name: zed
+    in: query
+    description: z-e-d
+    required: true
+    type: integer
+
+paths:
+  /betas:
+    get:
+      description: Get the betas
+      parameters:
+        - $ref: '#/parameters/x'
+        - $ref: '#/parameters/y'
+        - $ref: '#/parameters/z'
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/Alphas'
